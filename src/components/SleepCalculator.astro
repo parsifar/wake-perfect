@@ -1,0 +1,167 @@
+---
+
+---
+
+<div class="container box-container">
+    <h1>Sleep Time Calculator 💤</h1>
+
+    <div class="toggle-section">
+        <button id="modeWake" class="active"> I want to wake up at... </button>
+        <button id="modeSleep"> I'm going to bed at... </button>
+    </div>
+
+    <label id="timeLabel" for="timeInput">When do you want to wake up?</label>
+    <input type="time" id="timeInput" value="07:00" />
+
+    <button id="calculate-btn"> Calculate </button>
+
+    <div class="results" id="results"></div>
+
+    <div class="note">
+        Each sleep cycle lasts ~90 minutes. Waking up at the end of a cycle can
+        help you feel more refreshed.
+    </div>
+</div>
+
+<style>
+    label {
+        display: block;
+        margin: 1rem 0 0.5rem;
+    }
+    input[type='time'] {
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        border: none;
+        font-size: 1rem;
+        background: #e0e1dd;
+        color: #0d1b2a;
+    }
+    button {
+        margin-top: 1.25rem;
+        padding: 0.5rem 1rem;
+        background: #c3aed6;
+        color: #0d1b2a;
+        border: none;
+        border-radius: 9999px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    button:hover {
+        background: #ddbdfc;
+    }
+
+    #calculate-btn {
+        margin-left: 20px;
+        font-size: 1.2rem;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+    .toggle-section {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+    .toggle-section button {
+        background: #778da9;
+        color: #ffffff;
+    }
+    .toggle-section button.active {
+        background: #c3aed6;
+        color: #0d1b2a;
+    }
+</style>
+
+<script>
+    let mode = 'wake';
+
+    document.getElementById('modeWake')?.addEventListener('click', () => {
+        setMode('wake');
+    });
+    document.getElementById('modeSleep')?.addEventListener('click', () => {
+        setMode('sleep');
+    });
+    document.getElementById('calculate-btn')?.addEventListener('click', () => {
+        calculateTimes();
+    });
+
+    function setMode(selectedMode) {
+        mode = selectedMode;
+        document
+            .getElementById('modeWake')
+            ?.classList.toggle('active', mode === 'wake');
+        document
+            .getElementById('modeSleep')
+            ?.classList.toggle('active', mode === 'sleep');
+        document.getElementById('timeLabel').textContent =
+            mode === 'wake'
+                ? 'When do you want to wake up?'
+                : 'When are you going to bed?';
+        document.getElementById('timeInput').value =
+            mode === 'wake' ? '07:00' : '22:30';
+        document.getElementById('results').innerHTML = '';
+    }
+
+    function calculateTimes() {
+        const timeInput = document.getElementById('timeInput')?.value;
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = '';
+
+        if (!timeInput) return;
+
+        const [hours, minutes] = timeInput.split(':').map(Number);
+        const baseTime = new Date();
+        baseTime.setHours(hours);
+        baseTime.setMinutes(minutes);
+
+        const SLEEP_CYCLE_MIN = 90;
+        const FALL_ASLEEP_BUFFER = 15;
+
+        const times = [];
+
+        if (mode === 'wake') {
+            for (let i = 6; i >= 3; i--) {
+                const totalMinutes = i * SLEEP_CYCLE_MIN + FALL_ASLEEP_BUFFER;
+                const sleepTime = new Date(
+                    baseTime.getTime() - totalMinutes * 60000
+                );
+                const hh = sleepTime.getHours().toString().padStart(2, '0');
+                const mm = sleepTime.getMinutes().toString().padStart(2, '0');
+                times.push({ time: `${hh}:${mm}`, cycles: i });
+            }
+        } else {
+            for (let i = 3; i <= 6; i++) {
+                const totalMinutes = i * SLEEP_CYCLE_MIN + FALL_ASLEEP_BUFFER;
+                const wakeTime = new Date(
+                    baseTime.getTime() + totalMinutes * 60000
+                );
+                const hh = wakeTime.getHours().toString().padStart(2, '0');
+                const mm = wakeTime.getMinutes().toString().padStart(2, '0');
+                times.push({ time: `${hh}:${mm}`, cycles: i });
+            }
+        }
+
+        times.forEach((entry, index) => {
+            const div = document.createElement('div');
+            div.className = 'result-time';
+            div.style.animationDelay = `${index * 0.1}s`;
+            if (
+                (mode === 'wake' && index === 1) ||
+                (mode === 'sleep' && index === 2)
+            ) {
+                div.classList.add('best');
+            }
+            div.innerHTML = `<strong>${
+                entry.time
+            }</strong><div class="cycle-label">${
+                entry.cycles
+            } sleep cycle${entry.cycles > 1 ? 's' : ''}</div>`;
+            resultsContainer?.appendChild(div);
+        });
+    }
+</script>

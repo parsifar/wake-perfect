@@ -1,0 +1,27 @@
+/* styles for dynamically added elements. 
+these styles won't work if added to the component*/
+.results {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.result-time {
+    background: #415a77;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    font-size: 1.1rem;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+.result-time.best {
+    background: #a1cf6b;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+.cycle-label {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}

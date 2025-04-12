@@ -1,0 +1,88 @@
+@import './reset.css';
+@import './dynamic.css';
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #0d1b2a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.box-container {
+    background: #1b263b;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.seo-content :is(p, li) {
+    color: #ddd;
+}
+
+.seo-content :is(ul, ol) {
+    padding-inline-start: 24px;
+}
+
+.seo-content li {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+p.description {
+    text-align: left;
+
+    color: #ccc;
+}
+
+.note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+a.button-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin-block: 1rem;
+    background: #c3aed6;
+    color: #0d1b2a;
+    border-radius: 9999px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+a.button-link:hover {
+    background: #ddbdfc;
+}
