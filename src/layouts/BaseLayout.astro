@@ -1,29 +1,32 @@
 ---
-import '../styles/global.css'
+import GTM from '../components/GTM.astro';
+import GTMNoScript from '../components/GTMNoScript.astro';
+import '../styles/global.css';
 
-const {title = "WakePerfect", description = "Use our free Sleep Time Calculator to find the best times to go to bed"} = Astro.props
-
+const {
+    title = 'WakePerfect',
+    description = 'Use our free Sleep Time Calculator to find the best times to go to bed',
+} = Astro.props;
 ---
-
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+    <head>
+        <GTM />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
         <meta name="description" content={description} />
 
         <link
             href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap"
             rel="stylesheet"
         />
-	</head>
-	<body>
-		<slot />
-	</body>
+    </head>
+    <body>
+        <slot />
+        <GTMNoScript />
+    </body>
 </html>
-
-
