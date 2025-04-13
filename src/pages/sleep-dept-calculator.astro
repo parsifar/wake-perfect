@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DeptCalculator from '../components/DeptCalculator.astro';
+
+const pageTitle = 'Sleep Debt Calculator | Track & Recover Lost Sleep';
+const pageDescription =
+    'Easily calculate your weekly sleep debt based on age. Get personalized tips to recover and improve your sleep quality. Free, fast, and accurate.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <DeptCalculator />
+
+    <div class="container seo-content">
+        <h2>Welcome to our Sleep Dept Calculator!</h2>
+        <p>
+            Getting enough sleep isn't just about how early you go to bed — it's
+            about consistency and meeting your body's true needs. This simple
+            tool helps you track your weekly sleep, calculate any sleep debt
+            you've accumulated, and understand how it may be impacting your
+            energy, mood, and focus. Whether you're trying to recover from a
+            busy week or improve your long-term sleep habits, you're in the
+            right place. Let's find out how much rest you really need.
+        </p>
+
+        <h2>What is Sleep Debt?</h2>
+        <p>
+            Sleep debt is the difference between the amount of sleep your body
+            needs and the amount you actually get. Over time, even losing just a
+            little sleep each night can add up—leading to fatigue, poor
+            concentration, weakened immunity, and other health issues. Our Sleep
+            Debt Calculator helps you track how much rest you're missing and
+            gives you personalized tips on how to recover.
+        </p>
+
+        <h2>Why Track Your Sleep Debt?</h2>
+        <p>
+            Tracking sleep debt is an important step in building healthy sleep
+            habits. Whether you're a teenager who needs more sleep than you
+            realize or an adult juggling a busy schedule, being aware of your
+            sleep patterns helps you make informed decisions about your bedtime,
+            morning routine, and overall wellness.
+        </p>
+
+        <h2>How This Calculator Works</h2>
+        <p>
+            This tool uses your age range to determine your recommended nightly
+            sleep duration and compares it to your actual sleep over the past
+            week. The result includes your total sleep time, accumulated sleep
+            debt, and practical suggestions based on your current sleep habits.
+        </p>
+
+        <p>
+            If you're looking to plan your ideal bedtime based on a specific
+            wake-up time, check out our <a href="/sleep-time-calculator/"
+                >Sleep Time Calculator</a
+            > — a great companion tool for improving your sleep routine.
+        </p>
+
+        <p>
+            <strong>Tip:</strong> Try to go to bed and wake up at the same time every
+            day, even on weekends. Consistency is key to healthy, restorative sleep.
+        </p>
+    </div>
+</BaseLayout>

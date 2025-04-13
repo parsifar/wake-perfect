@@ -1,0 +1,273 @@
+<div class="container box-container dept-calculator-container">
+    <h1>Sleep Debt Calculator 😴</h1>
+
+    <div class="age-select-wrapper">
+        <label for="age-range">Your Age Range:</label>
+        <select id="age-range" required>
+            <option value="teen">14–17 years</option>
+            <option value="adult" selected>18–64 years</option>
+            <option value="senior">65+ years</option>
+            <option value="child">Under 14 (not supported)</option>
+        </select>
+    </div>
+
+    <h3>Enter Sleep for the Last 7 Days</h3>
+
+    <div class="day-sliders">
+        <div class="day-group">
+            <label
+                >Monday:
+                <input
+                    type="range"
+                    min="0"
+                    max="12"
+                    step="0.25"
+                    value="8"
+                    data-day="mon"
+                />
+                <span id="mon-val">8</span> hours
+            </label>
+        </div>
+        <div class="day-group">
+            <label
+                >Tuesday:
+                <input
+                    type="range"
+                    min="0"
+                    max="12"
+                    step="0.25"
+                    value="8"
+                    data-day="tue"
+                />
+                <span id="tue-val">8</span> hours
+            </label>
+        </div>
+        <div class="day-group">
+            <label
+                >Wednesday:
+                <input
+                    type="range"
+                    min="0"
+                    max="12"
+                    step="0.25"
+                    value="8"
+                    data-day="wed"
+                />
+                <span id="wed-val">8</span> hours
+            </label>
+        </div>
+        <div class="day-group">
+            <label
+                >Thursday:
+                <input
+                    type="range"
+                    min="0"
+                    max="12"
+                    step="0.25"
+                    value="8"
+                    data-day="thu"
+                />
+                <span id="thu-val">8</span> hours
+            </label>
+        </div>
+        <div class="day-group">
+            <label
+                >Friday:
+                <input
+                    type="range"
+                    min="0"
+                    max="12"
+                    step="0.25"
+                    value="8"
+                    data-day="fri"
+                />
+                <span id="fri-val">8</span> hours
+            </label>
+        </div>
+        <div class="day-group">
+            <label
+                >Saturday:
+                <input
+                    type="range"
+                    min="0"
+                    max="12"
+                    step="0.25"
+                    value="9"
+                    data-day="sat"
+                />
+                <span id="sat-val">9</span> hours
+            </label>
+        </div>
+        <div class="day-group">
+            <label
+                >Sunday:
+                <input
+                    type="range"
+                    min="0"
+                    max="12"
+                    step="0.25"
+                    value="9"
+                    data-day="sun"
+                />
+                <span id="sun-val">9</span> hours
+            </label>
+        </div>
+    </div>
+    <button id="calculate-btn">Calculate</button>
+
+    <div class="result" id="output"></div>
+
+    <div class="note">
+        <h2>Why does age matter?</h2>
+        <p>Your recommended sleep duration changes with age:</p>
+
+        <ul>
+            <li><strong>14–17 years:</strong> ~9 hours/night</li>
+            <li><strong>18–64 years:</strong> ~8 hours/night</li>
+            <li><strong>65+ years:</strong> ~7.5 hours/night</li>
+        </ul>
+        <p>
+            Sleep helps with memory, mood, focus, and overall health. Make rest
+            a priority!
+        </p>
+    </div>
+</div>
+
+<style>
+    .dept-calculator-container {
+        text-align: left;
+    }
+    h1 {
+        text-align: center;
+    }
+
+    .age-select-wrapper {
+        margin-bottom: 1rem;
+    }
+
+    .age-select-wrapper label {
+        display: inline-block;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    input[type='range'] {
+        width: 100%;
+    }
+
+    input,
+    select,
+    button {
+        padding: 0.5rem;
+        margin: 0.3rem 0;
+        width: 100%;
+    }
+
+    .day-group {
+        margin-bottom: 1rem;
+    }
+
+    #calculate-btn {
+        font-size: 1.2rem;
+    }
+
+    .result {
+        margin-top: 1.5rem;
+        border-radius: 5px;
+    }
+    label span {
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    document
+        .querySelector('.day-sliders')
+        ?.addEventListener('input', function (e) {
+            const slider = e.target;
+            updateLabel(slider, slider?.dataset?.day + '-val');
+        });
+
+    document
+        .getElementById('calculate-btn')
+        ?.addEventListener('click', calculateSleepDebt);
+
+    function updateLabel(slider, id) {
+        document.getElementById(id).textContent = slider.value;
+    }
+
+    function getRecommendedSleep(ageGroup) {
+        switch (ageGroup) {
+            case 'teen':
+                return 9;
+            case 'adult':
+                return 8;
+            case 'senior':
+                return 7.5;
+            default:
+                return null;
+        }
+    }
+
+    function calculateSleepDebt() {
+        const ageRange = document.getElementById('age-range').value;
+        const recommendedPerNight = getRecommendedSleep(ageRange);
+
+        if (ageRange === 'child') {
+            alert('This calculator is designed for ages 14 and up.');
+            return;
+        }
+
+        if (!recommendedPerNight) {
+            alert('Please select a valid age range.');
+            return;
+        }
+
+        const sliders = document.querySelectorAll('input[type="range"]');
+        let totalSleep = 0;
+
+        sliders.forEach((slider) => {
+            const hours = parseFloat(slider.value);
+            if (!isNaN(hours)) totalSleep += hours;
+        });
+
+        const recommendedTotal = recommendedPerNight * 7;
+        const sleepDebt = recommendedTotal - totalSleep;
+        let recommendation = '';
+
+        if (sleepDebt <= 0) {
+            recommendation =
+                "You're meeting or exceeding your weekly sleep need. Great job! 🎉";
+        } else if (sleepDebt <= 5) {
+            recommendation =
+                "You're a bit behind. Try going to bed 30–60 minutes earlier this week.";
+        } else if (sleepDebt <= 14) {
+            recommendation =
+                "That's a noticeable sleep debt. Prioritize rest and limit late-night activities.";
+        } else {
+            recommendation =
+                "You're significantly sleep-deprived. Consider adjusting your schedule or talking to a sleep specialist.";
+        }
+
+        let label = '';
+        if (ageRange === 'teen')
+            label =
+                "You're a teen, so aim for about 9 hours of sleep per night.";
+        else if (ageRange === 'adult')
+            label = 'As an adult, you need around 8 hours of sleep per night.';
+        else if (ageRange === 'senior')
+            label = 'For seniors, 7.5 hours per night is the target.';
+
+        const output = `
+            <h2>Results</h2>
+            <p><strong>Total Sleep This Week:</strong> ${totalSleep.toFixed(1)} hours</p>
+            <p><strong>Recommended Sleep:</strong> ${recommendedTotal} hours (${recommendedPerNight}/night)</p>
+            <p><strong>Sleep Debt:</strong> ${
+                sleepDebt > 0 ? sleepDebt.toFixed(1) + ' hours' : 'None 🎉'
+            }</p>
+            <p><strong>Info:</strong> ${label}</p>
+            <p><strong>Recommendation:</strong> ${recommendation}</p>
+            `;
+
+        document.getElementById('output').innerHTML = output;
+    }
+</script>
