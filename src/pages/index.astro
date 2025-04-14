@@ -1,21 +1,24 @@
 ---
+import BlogGrid from '../components/BlogGrid.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle="WakePerfect | Sleep Cycle Tools" 
-const pageDescription = "Use our free Sleep Time Calculator to find the best times to go to bed or wake up based on 90-minute sleep cycles. Improve your sleep quality and wake up refreshed."
+const pageTitle = 'WakePerfect | Sleep Cycle Tools';
+const pageDescription =
+    'Use our free Sleep Time Calculator to find the best times to go to bed or wake up based on 90-minute sleep cycles. Improve your sleep quality and wake up refreshed.';
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-	<div class="container box-container">
+    <div class="container box-container">
         <h1>Sleep Time Calculator 💤</h1>
         <p class="description">
-            Improve your sleep quality by waking up at the right time. Our
-            Sleep Time Calculator helps you figure out the best times to go
-            to bed or wake up based on natural 90-minute sleep cycles.
-            Simply input your desired sleep or wake time, and we’ll handle
-            the rest!
+            Improve your sleep quality by waking up at the right time. Our Sleep
+            Time Calculator helps you figure out the best times to go to bed or
+            wake up based on natural 90-minute sleep cycles. Simply input your
+            desired sleep or wake time, and we’ll handle the rest!
         </p>
-        <a class="button-link" href="/sleep-time-calculator/">Launch Calculator</a>
+        <a class="button-link" href="/sleep-time-calculator/"
+            >Launch Calculator</a
+        >
         <p class="note">
             The average sleep cycle lasts around 90 minutes. Aligning your
             wake-up time with the end of a cycle can help you feel more
@@ -27,44 +30,42 @@ const pageDescription = "Use our free Sleep Time Calculator to find the best tim
         <h2>What Is a Sleep Cycle?</h2>
         <p>
             A sleep cycle typically lasts about 90 minutes and includes
-            different stages of sleep—light sleep, deep sleep, and REM
-            (rapid eye movement). Waking up during the lighter stages of
-            sleep can help you feel more refreshed and energized compared to
-            waking up during deep sleep.
+            different stages of sleep—light sleep, deep sleep, and REM (rapid
+            eye movement). Waking up during the lighter stages of sleep can help
+            you feel more refreshed and energized compared to waking up during
+            deep sleep.
         </p>
 
         <h2>Why Timing Matters</h2>
         <p>
-            Waking up at the end of a sleep cycle helps reduce grogginess
-            and sleep inertia. By using a sleep calculator, you can plan
-            your bedtime or wake-up time to align with your natural sleep
-            rhythm, improving your overall alertness and well-being.
+            Waking up at the end of a sleep cycle helps reduce grogginess and
+            sleep inertia. By using a sleep calculator, you can plan your
+            bedtime or wake-up time to align with your natural sleep rhythm,
+            improving your overall alertness and well-being.
         </p>
 
         <h2>How Much Sleep Do You Need?</h2>
         <p>
-            Most adults need between 7–9 hours of sleep per night. That
-            equates to about 5–6 full sleep cycles. Your individual needs
-            may vary based on age, health, and lifestyle, but getting the
-            right amount of sleep is critical for both physical and mental
-            health.
+            Most adults need between 7–9 hours of sleep per night. That equates
+            to about 5–6 full sleep cycles. Your individual needs may vary based
+            on age, health, and lifestyle, but getting the right amount of sleep
+            is critical for both physical and mental health.
         </p>
 
         <h2>Tips for Better Sleep</h2>
         <p>
             To improve your sleep quality, consider going to bed at the same
-            time each night, avoiding screens before bed, keeping your room
-            cool and dark, and avoiding caffeine late in the day.
-            Consistency is key to helping your body maintain a healthy sleep
-            routine.
+            time each night, avoiding screens before bed, keeping your room cool
+            and dark, and avoiding caffeine late in the day. Consistency is key
+            to helping your body maintain a healthy sleep routine.
         </p>
 
         <h2>Use Our Sleep Time Calculator</h2>
         <p>
-            Whether you're planning when to go to bed or when to wake up,
-            our calculator can help you find the best time based on your
-            desired schedule. It's a simple but powerful tool to help you
-            take control of your sleep.
+            Whether you're planning when to go to bed or when to wake up, our
+            calculator can help you find the best time based on your desired
+            schedule. It's a simple but powerful tool to help you take control
+            of your sleep.
         </p>
 
         <div class="btn-wrapper">
@@ -73,4 +74,6 @@ const pageDescription = "Use our free Sleep Time Calculator to find the best tim
             >
         </div>
     </div>
+
+    <BlogGrid />
 </BaseLayout>

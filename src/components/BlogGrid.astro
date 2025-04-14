@@ -1,0 +1,68 @@
+---
+const posts = Object.values(
+    import.meta.glob('../pages/blog/*.md', { eager: true })
+);
+---
+
+<div class="container">
+    <h2>Blog Posts</h2>
+    <div class="blog-grid">
+        {
+            posts.map((post) => (
+                <article class="post-card">
+                    <a class="post-link" href={post.url}>
+                        <h3 class="post-title">{post.frontmatter.title}</h3>
+                        <p class="post-description">
+                            {post.frontmatter.description}
+                        </p>
+                    </a>
+                </article>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-block: 2rem;
+    }
+    .post-link {
+        display: block;
+        padding: 1.5rem;
+        text-decoration: none;
+    }
+
+    .blog-grid .post-card {
+        background-color: #1b263b; /* slightly lighter for contrast */
+        border-radius: 12px;
+
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .blog-grid .post-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .blog-grid .post-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #f5f5f5;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-grid .post-description {
+        font-size: 1rem;
+        color: #c0c0c0;
+        line-height: 1.6;
+        margin-bottom: 0;
+        margin-top: 1rem;
+    }
+</style>
