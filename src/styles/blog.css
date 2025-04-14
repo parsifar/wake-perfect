@@ -1,0 +1,72 @@
+.blog-post :is(p, li) {
+    font-size: 1.25rem;
+}
+
+.blog-post h3 {
+    font-size: 1.5;
+}
+
+.blog-post h2 {
+    font-size: 2rem;
+}
+.blog-post h1 {
+    font-size: 2.5rem;
+}
+/* Base Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e0e6ed; /* Light text for contrast */
+    background-color: transparent;
+}
+
+/* Header Styling */
+thead {
+    background-color: #1b2b3a; /* Slightly lighter than background */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+th,
+td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #334155; /* Subtle border */
+}
+
+/* Alternate Row Backgrounds */
+tbody tr:nth-child(even) {
+    background-color: #142536; /* Soft contrast against #0d1b2a */
+}
+
+/* Responsive Wrapping */
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Optional: Hover effect for rows */
+tbody tr:hover {
+    background-color: #1f364d; /* Highlight row on hover */
+}
+
+.tags {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tags span {
+    background-color: #1b2c42;
+    color: #ffffff;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}

@@ -1,0 +1,29 @@
+---
+import { formDataToObject } from 'astro:actions';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import '../styles/blog.css';
+
+const { frontmatter } = Astro.props;
+
+const pageTitle = frontmatter.title;
+const pageDescription = frontmatter.description;
+const tags = frontmatter.tags;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <div class="blog-post container seo-content">
+        <slot />
+
+        {
+            tags?.length && (
+                <div class="tags">
+                    <h4>Tags</h4>
+                    {tags.map((tag) => (
+                        <span class="tag">{tag}</span>
+                    ))}
+                </div>
+            )
+        }
+    </div>
+</BaseLayout>
